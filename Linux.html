@@ -2,7 +2,7 @@
 title: Linux
 description: Issues that come up when developing in linux/ubuntu
 published: true
-date: 2021-08-30T06:17:07.042Z
+date: 2021-08-30T06:23:07.323Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-08-30T06:17:07.042Z
@@ -21,4 +21,5 @@ path-exclude=/usr/share/man/*
 <p>then re-install any package for which you want the man pages:</p>
 <pre><code class="language-plaintext">apt --reinstall install man-db coreutils
 </code></pre>
-<p>to restore the <code>man</code> and <code>ls</code> man pages (among others).<br><br><br>Managed to fix it by doing the above, and hopefully no other issues come up!</p>
+<p>to restore the <code>man</code> and <code>ls</code> man pages (among others).<br><br>Had to reinstall the development and POSIX man pages as they were not found after doing all of the above</p>
+<p><code>sudo apt --reinstall install manpages-dev manpages-posix-dev</code><br><br><code>Everything works now!</code><br><br>Managed to fix it by doing the above, and hopefully no other issues come up!</p>
