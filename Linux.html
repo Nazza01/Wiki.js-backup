@@ -2,7 +2,7 @@
 title: Linux
 description: Issues that come up when developing in linux/ubuntu
 published: true
-date: 2021-08-30T06:23:07.323Z
+date: 2021-08-30T06:24:22.444Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-08-30T06:17:07.042Z
@@ -11,15 +11,14 @@ dateCreated: 2021-08-30T06:17:07.042Z
 <p>Could not find any man pages in the code-server container while in the terminal and had to re-download the man pages. Turned out the dpkg.cfg.d/excludes was blocking man pages as below.<br>From: https://unix.stackexchange.com/questions/484705/see-man-7-undocumented-for-help-when-manual-pages-are-not-available-wsl-core</p>
 <p>The first two lines of <code>/etc/dpkg/dpkg.cfg.d/excludes</code></p>
 <pre><code class="language-plaintext"># Drop all man pages
-path-exclude=/usr/share/man/*
-</code></pre>
-<p>cause all man pages to be dropped when packages are installed.</p>
+path-exclude=/usr/share/man/*</code></pre>
+<p>This causes all man pages to be dropped when packages are installed.</p>
 <p>To make man pages available, you’ll have to comment the second line out:</p>
 <pre><code class="language-plaintext"># Drop all man pages
-# path-exclude=/usr/share/man/*
-</code></pre>
+# path-exclude=/usr/share/man/*</code></pre>
 <p>then re-install any package for which you want the man pages:</p>
-<pre><code class="language-plaintext">apt --reinstall install man-db coreutils
-</code></pre>
+<pre><code class="language-plaintext">apt --reinstall install man-db coreutils</code></pre>
 <p>to restore the <code>man</code> and <code>ls</code> man pages (among others).<br><br>Had to reinstall the development and POSIX man pages as they were not found after doing all of the above</p>
-<p><code>sudo apt --reinstall install manpages-dev manpages-posix-dev</code><br><br><code>Everything works now!</code><br><br>Managed to fix it by doing the above, and hopefully no other issues come up!</p>
+<pre><code class="language-plaintext">sudo apt --reinstall install manpages-dev manpages-posix-dev</code></pre>
+<p>Everything works now!</p>
+<p>Managed to fix it by doing the above, and hopefully no other issues come up!</p>
