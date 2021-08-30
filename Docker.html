@@ -1,16 +1,28 @@
 <!--
-title: Todo List
-description: A short To-do list that will remind me to make stuff inside of here
-published: false
-date: 2021-08-29T10:00:37.094Z
-tags: todo, list, organisation
+title: Example Docker Compose - Vaultwarden
+description: A short explanation of an example vaultwarden instance
+published: true
+date: 2021-08-30T02:05:50.389Z
+tags: 
 editor: ckeditor
-dateCreated: 2021-08-29T09:55:37.241Z
+dateCreated: 2021-08-30T01:50:23.382Z
 -->
 
-<h1>Todo</h1>
-<p>Add in self-documentation over the course of my technical troubleshooting.</p>
-<p>docker basics</p>
-<p>portainer how-to (host management)</p>
-<p>make a section for each of my services</p>
-<p>nextcloud instance to not have errors (found this to help me - https://github.com/karelzak/util-linux/issues/399)</p>
+<p>Example Docker-compose.yml&nbsp;<br>&nbsp;</p>
+<pre><code class="language-plaintext">version: '3'
+services:
+    vaultwarden:
+        image: vaultwarden/server:latest
+        container_name: vaultwarden
+        restart: unless-stopped
+        ports:
+            - 8800:80
+            - 3012:3012
+        environment:
+            - WEBSOCKET_ENABLED=true  # Enable WebSocket notifications.
+        volumes:
+            - ./bw-data:/data
+</code></pre>
+<p>This is for vaultwarden - a selfhosted lightweight bitwarden instance.</p>
+<p>The services we want for this stack is vaultwarden.&nbsp;<br>We then define the image to pull (the latest image)<br>We define the container should only stop when we press the stop button.<br>Open port 8800 (host) and map them to port 80 (container)<br>- This is especially useful for when you have a few services set up on existing ports on the host and want to remap another service to a different port<br>Open port 3012 (host) and map them to port 3012 (container)<br>Define the WEBSOCKET_ENABLED environment variable to be true<br>Map a bind mount (host folder) to the /data folder located in the container - this folder must already be created on the host server as there will be errors if it is not already there.<br>&nbsp;</p>
+<p>&nbsp;</p>
