@@ -2,7 +2,7 @@
 title: Linux
 description: Issues that come up when developing in linux/ubuntu
 published: true
-date: 2021-08-30T06:59:54.181Z
+date: 2021-08-30T07:04:13.335Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-08-30T06:17:07.042Z
@@ -17,12 +17,10 @@ path-exclude=/usr/share/man/*</code></pre>
 <pre><code class="language-plaintext"># Drop all man pages
 # path-exclude=/usr/share/man/*</code></pre>
 <p>then re-install any package for which you want the man pages:</p>
-<pre><code class="language-plaintext">apt --reinstall install man-db coreutils</code></pre>
-<p>to restore the <code>man</code> and <code>ls</code> man pages (among others).<br><br>Had to reinstall the development and POSIX man pages as they were not found after doing all of the above</p>
-<pre><code class="language-plaintext">sudo apt --reinstall install manpages-posix man-pages-dev man-db</code></pre>
+<pre><code class="language-plaintext">apt --reinstall install coreutils man-db manpages-posix manpages-dev</code></pre>
+<p>to restore the <code>man</code> and <code>ls</code> man pages (among others).</p>
 <p>I can finally do</p>
 <pre><code class="language-plaintext">man atoi
 man malloc
 man strlen</code></pre>
-<p>Can't find any info on man ascii for some reason</p>
 <p>To Be Continued…</p>
