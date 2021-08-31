@@ -2,10 +2,18 @@
 title: Code-Server manual Issues
 description: Issues arising with the code-server and how I fixed it (mainly by googling)
 published: true
-date: 2021-08-31T05:55:07.690Z
+date: 2021-08-31T05:56:51.659Z
 tags: docker, linux, ubuntu, bionic, manpages, man
 editor: ckeditor
 dateCreated: 2021-08-31T05:55:07.690Z
 -->
 
-<p>Issues arose with trying to use the following docker container for coding and looking for man-pages<br>Docker Container: https://hub.docker.com/r/linuxserver/code-server<br>Fix: https://github.com/tianon/docker-brew-ubuntu-core/issues/122#issuecomment-380529430<br>Had to comment out the entry and re-install manual pages as the link says</p>
+<p>Issues arose with trying to use the following docker container for coding and looking for man-pages<br>Docker Container: https://hub.docker.com/r/linuxserver/code-server<br>General idea for the fix: https://github.com/tianon/docker-brew-ubuntu-core/issues/122#issuecomment-380529430<br><br>For my specific case I had to do the following while inside the code-server's terminal</p>
+<pre><code class="language-plaintext">#Execute while in root access
+sudo -i
+# Do not exclude man pages &amp; other documentation
+rm /etc/dpkg/dpkg.cfg.d/excludes
+# Reinstall all currently installed packages in order to get the man pages back
+apt-get update &amp;&amp; \
+	dpkg -l | grep ^ii | cut -d' ' -f3 | xargs apt-get install -y --reinstall &amp;&amp; \
+    rm -r /var/lib/apt/lists/*</code></pre>
