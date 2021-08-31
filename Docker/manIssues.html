@@ -1,14 +1,33 @@
 <!--
-title: Code-Server manual Issues
+title: Code-Server manpage Issues
 description: Issues arising with the code-server and how I fixed it (mainly by googling)
 published: true
-date: 2021-08-31T05:56:51.659Z
+date: 2021-08-31T10:35:41.858Z
 tags: docker, linux, ubuntu, bionic, manpages, man
 editor: ckeditor
 dateCreated: 2021-08-31T05:55:07.690Z
 -->
 
-<p>Issues arose with trying to use the following docker container for coding and looking for man-pages<br>Docker Container: https://hub.docker.com/r/linuxserver/code-server<br>General idea for the fix: https://github.com/tianon/docker-brew-ubuntu-core/issues/122#issuecomment-380529430<br><br>For my specific case I had to do the following while inside the code-server's terminal</p>
+<h1>The Problem</h1>
+<p>Issues arose with trying to use the following docker container for coding and looking for man-pages. Initially I thought what was the problem related to not having them installed.</p>
+<p>I could not find any man pages in the code-server container while in the terminal and had to re-download the man pages. Turned out the dpkg.cfg.d/excludes was blocking man pages as below.<br>From: https://unix.stackexchange.com/questions/484705/see-man-7-undocumented-for-help-when-manual-pages-are-not-available-wsl-core</p>
+<p>The first two lines of <code>/etc/dpkg/dpkg.cfg.d/excludes</code></p>
+<pre><code class="language-plaintext"># Drop all man pages
+path-exclude=/usr/share/man/*</code></pre>
+<p>This causes all man pages to be dropped when packages are installed.</p>
+<p>To make man pages available, you’ll have to comment the second line out:</p>
+<pre><code class="language-plaintext"># Drop all man pages
+# path-exclude=/usr/share/man/*</code></pre>
+<p>then re-install any package for which you want the man pages:</p>
+<pre><code class="language-plaintext">apt --reinstall install coreutils man-db manpages-posix manpages-dev</code></pre>
+<p>to restore the <code>man</code> and <code>ls</code> man pages (among others).</p>
+<p>I can finally do</p>
+<pre><code class="language-plaintext">man atoi
+man malloc
+man strlen</code></pre>
+<p>But! <code>man ascii</code> did not work - Hence the solution to the problem is below!</p>
+<h1>The Solution™</h1>
+<p>Docker Container: https://hub.docker.com/r/linuxserver/code-server<br>General idea for the fix: https://github.com/tianon/docker-brew-ubuntu-core/issues/122#issuecomment-380529430<br><br>For my specific case I had to do the following while inside the code-server's terminal</p>
 <pre><code class="language-plaintext">#Execute while in root access
 sudo -i
 # Do not exclude man pages &amp; other documentation
