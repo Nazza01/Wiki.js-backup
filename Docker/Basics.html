@@ -1,14 +1,45 @@
 <!--
-title: Example Docker Compose - Vaultwarden
+title: Docker Basics
 description: A short explanation of an example vaultwarden instance
 published: true
-date: 2021-08-30T02:05:50.389Z
+date: 2021-08-31T08:00:38.744Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-08-30T01:50:23.382Z
 -->
 
-<p>Example Docker-compose.yml&nbsp;<br>&nbsp;</p>
+<h1>Docker!</h1>
+<p>You've heard of it, seen it, and if you haven't? Well you're missing out!<br><br>&nbsp;</p>
+<h1>What is this Docker thing?</h1>
+<p>It is:</p>
+<ul>
+  <li>Easy to setup</li>
+  <li>Easy to set-down</li>
+  <li>Easy to configure<ul>
+      <li>Backups</li>
+      <li>Scheduled Jobs</li>
+    </ul>
+  </li>
+  <li>App-ify a service</li>
+  <li>Monitoring</li>
+  <li>Web-servers</li>
+  <li>Microservices</li>
+</ul>
+<h1>Okay cool, but what can it <i>do</i> for me?&nbsp;</h1>
+<p>Well anything you throw at it! Check the <a href="https://hub.docker.com/search?q=&amp;type=image">docker hub</a> for docker images that people/companies have set up for anyone to use.</p>
+<h1>I think I'm getting the hang of it, but how do I do the thing?&nbsp;</h1>
+<p>You can easily start a docker container - once you have installed docker desktop as per the docker <a href="https://docs.docker.com/get-docker/">setup instructions</a>. Once you've done that, come back here and I'll check ya setup!</p>
+<h1>Okay I think I have installed it, but how do I get the image from the internet to my computer?</h1>
+<p>Okay assuming you are familiar with the command line we will be using a tool inside of docker called docker compose!<br>To get started you will need to create a file called <code>docker-compose.yml</code><br>&nbsp;</p>
+<p>Inside of this file you will define a few details.<br>&nbsp;</p>
+<p>Here is an example Hello World tutorial</p>
+<pre><code class="language-plaintext">version: '2'
+services:
+  hello_world:
+    image: ubuntu
+    command: [/bin/echo, 'Hello world']</code></pre>
+<p>Use version 2 of docker compose.<br>Define a hello_world container<br>Use the ubuntu image as the OS of the container.<br>Use the echo command (Located at /bin/echo) to write to the terminal “Hello world”<br>&nbsp;</p>
+<p>Here is a bit more complex bitwarden image - This is a lightweight version of a bitwarden instance.</p>
 <pre><code class="language-plaintext">version: '3'
 services:
     vaultwarden:
@@ -21,8 +52,7 @@ services:
         environment:
             - WEBSOCKET_ENABLED=true  # Enable WebSocket notifications.
         volumes:
-            - ./bw-data:/data
-</code></pre>
-<p>This is for vaultwarden - a selfhosted lightweight bitwarden instance.</p>
+            - ./bw-data:/data</code></pre>
+<p>Line by line explanation</p>
 <p>The services we want for this stack is vaultwarden.&nbsp;<br>We then define the image to pull (the latest image)<br>We define the container should only stop when we press the stop button.<br>Open port 8800 (host) and map them to port 80 (container)<br>- This is especially useful for when you have a few services set up on existing ports on the host and want to remap another service to a different port<br>Open port 3012 (host) and map them to port 3012 (container)<br>Define the WEBSOCKET_ENABLED environment variable to be true<br>Map a bind mount (host folder) to the /data folder located in the container - this folder must already be created on the host server as there will be errors if it is not already there.<br>&nbsp;</p>
 <p>&nbsp;</p>
