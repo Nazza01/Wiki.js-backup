@@ -1,0 +1,19 @@
+<!--
+title: Linux - Folder
+description: 
+published: true
+date: 2021-09-01T14:35:02.457Z
+tags: docker, linux, folders, code-server
+editor: ckeditor
+dateCreated: 2021-09-01T14:35:02.457Z
+-->
+
+<p>https://superuser.com/questions/60555/show-only-current-directory-name-not-full-path-on-bash-prompt<br><br>Current View when typing commands</p>
+<pre><code class="language-plaintext">abc@xxxxxx:~/workspace$ &lt;command&gt;</code></pre>
+<p>Wanted like this without the whole folder directory or computer name</p>
+<pre><code class="language-plaintext">abc:workspace$ &lt;command&gt;</code></pre>
+<p>Fixed by adding this line in the .bashrc&nbsp;</p>
+<pre><code class="language-plaintext">PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\W\[\033[00m\]\$ '</code></pre>
+<p>Then doing this command to get it to re-fresh the file</p>
+<pre><code class="language-plaintext">source ~/.bashrc</code></pre>
+<p>All good now!</p>
