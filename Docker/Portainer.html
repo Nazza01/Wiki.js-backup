@@ -2,7 +2,7 @@
 title: Portainer
 description: Portainer Issues
 published: true
-date: 2021-09-16T11:52:58.987Z
+date: 2021-09-16T11:55:02.736Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-09-16T11:52:58.987Z
@@ -10,5 +10,7 @@ dateCreated: 2021-09-16T11:52:58.987Z
 
 <h1>Portainer</h1>
 <p>Nextcloud needs a command to scan the directory when you modify it using a different program (code-server)</p>
-<p>As such, you'll need to do this command</p>
-<pre><code class="language-plaintext">runuser --user www-data -- chown -R www-data:www-data</code></pre>
+<p>As such, you'll need to do this command (when not root)</p>
+<pre><code class="language-plaintext">runuser --user www-data -- chown -R www-data:www-data .</code></pre>
+<p>If you are root (e.g. root@/www/html/data) you won't need to do runuser</p>
+<pre><code class="language-plaintext">chown -R www-data:www-data .</code></pre>
