@@ -1,0 +1,30 @@
+<!--
+title: Git Init
+description: How to initialise a git repo for existing code in a folder
+published: true
+date: 2021-09-22T10:56:46.033Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-09-22T10:56:46.033Z
+-->
+
+<p>For an existing code repo that you want to resubmit (42 School)<br>You may want to re-submit the code and make a few changes.</p>
+<p>In my case I have libft to still get marked and as such, need to make changes to my code then re-submit again.</p>
+<p>I have my existing folder setup as so:</p>
+<pre><code class="language-plaintext">$ ls ~/42Git/libft
+		.git		Old Git repo folder
+		.gitignore	Git ignore file
+		*.c			Source files
+		*.h			Header files
+		Makefile	Source Makefile
+		........	Other files</code></pre>
+<p>If I make any changes to my code and the repo is no longer able to be committed to, I need to remove the old .git folder like so</p>
+<pre><code class="language-plaintext">$ rm -rf .git</code></pre>
+<p>Then when I get access to the git repository link: (Still need to test)</p>
+<pre><code class="language-plaintext">pwd: ~/42Git/libft
+git remote add origin &lt;url&gt;
+git&nbsp;init
+git&nbsp;add&nbsp;.&nbsp;
+git&nbsp;commit -m "message"
+git push</code></pre>
+<p>&nbsp;</p>
