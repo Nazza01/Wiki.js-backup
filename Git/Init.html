@@ -2,7 +2,7 @@
 title: Git Init
 description: How to initialise a git repo for existing code in a folder
 published: true
-date: 2021-09-24T13:19:11.481Z
+date: 2021-09-24T13:20:56.144Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-09-22T10:56:46.033Z
@@ -22,15 +22,15 @@ dateCreated: 2021-09-22T10:56:46.033Z
 <p>This all assumes that you have the git repository link after clicking re-try.&nbsp;</p>
 <p>Step 1: Remove the hidden old .git repository folder</p>
 <p>I need to remove the old .git folder like so</p>
-<pre><code class="language-plaintext">$ rm -rf .git					-Remove the .git folder recursively and forcefully</code></pre>
-<p>Step 2: Intialise the current directory (e.g. libft) as a local git repository.<br>Make sure you are in the correct directory</p>
-<pre><code class="language-plaintext">pwd: ~/42Git/libft				-Check the current directory
-git&nbsp;init						-Create the .git folder to start the git repo
-git remote add origin &lt;url&gt;		-Link the local .git folder to the remote location
-git&nbsp;add&nbsp;.&nbsp;						-Add the local files in the current directory to the files to be commited</code></pre>
+<pre><code class="language-plaintext">$ rm -rf .git</code></pre>
+<p>Step 2: Intialise the current directory (e.g. libft) as a local git repository.<br>Make sure you are in the correct directory, creates the local .git folder, link the local git repo to the remote url and add the local files to be committed to the git repo.</p>
+<pre><code class="language-plaintext">pwd: ~/42Git/libft
+git&nbsp;init
+git remote add origin &lt;url&gt;
+git&nbsp;add&nbsp;.</code></pre>
 <p>Before you submit a commit message before pushing your code up you need to set up your git configuration with your email and name used for the git commit logs/details:</p>
-<pre><code class="language-plaintext">git config user.email "you@example.com		-Add your details in here so logs can be easily traceable
-git config user.name "Your Name"			-Add your name for logs' sake
-git&nbsp;commit -m "message"						-Add a message to your logs for reference</code></pre>
+<pre><code class="language-plaintext">git config user.email "you@example.com"
+git config user.name "Your Name"
+git&nbsp;commit -m "message"</code></pre>
 <p>You will need to push the intial commit to the origin master branch so the future commits will know where to go</p>
-<pre><code class="language-plaintext">git push --set-upstream origin master		-Make the current commit branch a link to the origin master on the server</code></pre>
+<pre><code class="language-plaintext">git push --set-upstream origin master</code></pre>
