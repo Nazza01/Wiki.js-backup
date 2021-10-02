@@ -2,17 +2,37 @@
 title: Updating Code-Server
 description: The process of what to do when code-server updates and what you'll need to re-install
 published: true
-date: 2021-10-02T01:34:46.285Z
+date: 2021-10-02T02:10:25.130Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-10-02T01:34:46.285Z
 -->
 
-<p>Had an issue where after updating code-server, I didn't have gcc, make or man pages anymore<br>Edit (or remove) the following file <code>/etc/dpkg.cfg.d/excludes</code><br>And once you've done that come back here and enter the below command (installs gcc, man pages, make and other various needed things)</p>
+<p>Had an issue where after updating code-server, I didn't have gcc, make or man pages anymore</p>
+<p>First we are going to install vim as that isn't installed by default with the linuxserver code server</p>
+<pre><code class="language-plaintext">sudo apt install vim</code></pre>
+<p>Edit (or remove) the following file <code>/etc/dpkg.cfg.d/excludes</code><br>And once you've done that come back here and enter the below command (installs gcc, man pages, make and other various needed things)</p>
 <pre><code class="language-plaintext">sudo apt --reinstall install coreutils man-db manpages-posix manpages-dev</code></pre>
 <p>Once all that is done, you will need to reinstall norminette as it errors out when updating the code-server</p>
-<p>install pip</p>
-<pre><code class="language-plaintext">sudo apt-get install python3-pip</code></pre>
-<p>Once that has installed we want to install pip's setuptools and install norminette</p>
-<pre><code class="language-plaintext">python3 -m pip install --upgrade pip setuptools
-python3 -m pip install norminette</code></pre>
+<p>To start with, python is already installed as version 2.7 with default linux.<br>We can install multiple versions of python side-by-side.</p>
+<p>To start with we want to install the prerequisites</p>
+<pre><code class="language-plaintext">sudo apt update
+sudo apt install software-properties-common</code></pre>
+<p>Add deadsnakes PPA to your system's sources list</p>
+<pre><code class="language-plaintext">sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.9</code></pre>
+<p>Some prerequisites before we start</p>
+<p>Go to and make (if not already made) to ~/pip and type the following to download the pip install script</p>
+<pre><code class="language-plaintext">curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</code></pre>
+<p>As we are using python 3.9 we want to install distutils to help python</p>
+<pre><code class="language-plaintext">sudo apt install python3.9-distutils</code></pre>
+<p>Now we can install pip</p>
+<pre><code class="language-plaintext">sudo apt-get install python3.9-pip</code></pre>
+<p>If you already have a version of norminette running on your computer you will need to remove the old version as the current version may conflict with the new version that we are about to install.</p>
+<pre><code class="language-plaintext">pip uninstall norminette</code></pre>
+<p>Once we have either removed (in the case of norminette being already installed) or installed norminette we want to install pip's setuptools and finally install norminette!</p>
+<pre><code class="language-plaintext">python3.9 -m pip install --upgrade pip setuptools
+python3.9 -m pip install norminette</code></pre>
+<p>After all that we check the current version of norminette (current as of time of writing)</p>
+<pre><code class="language-plaintext">$ norminette -v
+norminette 3.3.32</code></pre>
