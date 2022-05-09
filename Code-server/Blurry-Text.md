@@ -2,7 +2,7 @@
 title: Blurry Text
 description: How to fix blurry terminal text
 published: true
-date: 2021-11-10T06:35:01.370Z
+date: 2021-11-10T06:35:02.848Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T06:35:01.370Z

@@ -2,7 +2,7 @@
 title: Homepage
 description: Home page for wiki.lssound.design
 published: true
-date: 2021-11-10T06:58:47.935Z
+date: 2021-11-10T06:58:49.267Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-08T01:16:22.277Z
